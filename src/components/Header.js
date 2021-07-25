@@ -1,26 +1,57 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/userSlice";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/userSlice";
 
 function Header() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
   return (
     <Nav>
       <NavLogo src="./images/lifting-logo.png" alt="" />
-      {/* <LoginButton>REGISTER</LoginButton> */}
-      <NavMenu>
-        <a href="">
-          <img src="./images/recipes-icon.png" alt="" />
-          <span>RECIPES</span>
-        </a>
-        <a href="">
-          <img src="./images/calculator-icon.png" alt="" />
-          <span>CALCULATORS</span>
-        </a>
+      {!user?.id ? (
+        <LoginButton>
+          <Link to="/registerPage">SIGN IN</Link>
+        </LoginButton>
+      ) : (
+        <>
+          <NavMenu>
+            <Link to="/recipes">
+              <a href="">
+                <img src="./images/recipes-icon.png" alt="" />
+                <span>RECIPES</span>
+              </a>
+            </Link>
 
-        <a href="">
-          <img src="./images/workouts-icon.png" alt="" />
-          <span>WORKOUTS</span>
-        </a>
-      </NavMenu>
+            <Link to="/calculators">
+              <a href="">
+                <img src="./images/calculator-icon.png" alt="" />
+                <span>CALCULATORS</span>
+              </a>
+            </Link>
+
+            <Link to="/workouts">
+              <a href="">
+                <img src="./images/workouts-icon.png" alt="" />
+                <span>WORKOUTS</span>
+              </a>
+            </Link>
+          </NavMenu>
+          <LoginButton
+            onClick={() => {
+              dispatch(logout());
+              localStorage.removeItem("token");
+              localStorage.removeItem("userId");
+            }}
+          >
+            LOGOUT
+          </LoginButton>
+        </>
+      )}
     </Nav>
   );
 }
@@ -33,18 +64,18 @@ const Nav = styled.div`
   left: 0;
   display: flex;
   width: 100%;
-  padding: 20px 100px;
-  height: 125px;
+  padding: 60px 100px;
+  height: 110px;
   align-items: center;
   justify-content: space-between;
   z-index: 999;
-  background-color: #040714;
+  border-bottom: 2px solid black;
 `;
 
 const NavLogo = styled.img`
   position: relative;
   box-sizing: border-box;
-  height: 120px;
+  height: 105px;
 `;
 
 const NavMenu = styled.div`
@@ -63,18 +94,19 @@ const NavMenu = styled.div`
     align-items: center;
     padding: 0 12px;
     flex-direction: column;
-    margin-left: 50px;
 
     img {
         margin: 10px;
-      height: 50px;
-      width: 50px;
+      height: 35px;
+      width: 35px;
       min-width: 20px;
     }
-
+ 
     span {
-        font-size: 18px;
+        font-size: 16px;
         letter-spacing: 1px;
+        font-weight: 700;
+        color: black;
     }
 
     @media (max-width: 768px) {
@@ -82,15 +114,15 @@ const NavMenu = styled.div`
     }
 `;
 
-/* const LoginButton = styled.a`
+const LoginButton = styled.a`
   background: transparent;
-  border: 1px solid #f9f9f9;
+  border: 2px solid black;
   border-radius: 4px;
-  color: #f9f9f9;
+  color: black;
   padding: 10px 15px;
   font-size: 16px;
   letter-spacing: 2px;
   cursor: pointer;
-  margin-right: 50px;
-  cursor: pointer;
-`; */
+  margin-right: -2rem;
+  font-weight: 700;
+`;

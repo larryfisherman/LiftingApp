@@ -13,15 +13,14 @@ html {
 }
 
 body {
-  color: #f9f9f9;
-  margin: 0;
-  padding: 0;
+  color: black;
+  margin: 0px;
+  padding: 0px;
   font-family: Avenir;
-  background-color: #040714;
+  background-color: #f9f9f9;
 }
 
 a {
-  color: #f9f9f9;
   text-decoration: none;
 }
 

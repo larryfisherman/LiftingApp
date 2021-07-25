@@ -9,6 +9,12 @@ function StartPage() {
   );
 }
 
-const Content = styled.div``;
+const Content = styled.div`
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 0 calc(3.5vw + 50px);
+`;
 
 export default StartPage;
