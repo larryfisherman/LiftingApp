@@ -3,17 +3,39 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import CreateWorkoutModal from "./CreateWorkoutModal";
+import { useDispatch } from "react-redux";
+import { setWorkouts } from "../store/workoutsSlice";
 
 function Workouts() {
   const [showModal, setShowModal] = useState(false);
+  const [userId, setUserId] = useState("");
+  const dispatch = useDispatch();
+
+  let workouts = [];
 
   useEffect(() => {
+    setUserId(localStorage.userId);
+
     axios
-      .get("https://localhost:5001/api/account/2/workout")
+      .get(`https://localhost:5001/api/account/${userId}/workout`)
       .then((response) => {
-        console.log(response.data);
+        response.data.map((doc) => {
+          workouts = [
+            ...workouts,
+            {
+              id: doc.id,
+              ...doc,
+            },
+          ];
+          dispatch(
+            setWorkouts({
+              workouts,
+            })
+          );
+        });
       });
-  }, []);
+  }, [dispatch]);
+
   return (
     <>
       <Container>
@@ -36,7 +58,7 @@ function Workouts() {
 const Container = styled.main`
 position: relative;
 display: block;
-min-height: 100vh;
+max-height: 100vh;
 overflow-x: hidden;
 padding: 0 calc(3.5vw + 50px);
 margin: 5rem;

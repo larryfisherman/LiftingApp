@@ -96,7 +96,7 @@ const NavMenu = styled.div`
     flex-direction: column;
 
     img {
-        margin: 10px;
+      margin: 10px;
       height: 35px;
       width: 35px;
       min-width: 20px;

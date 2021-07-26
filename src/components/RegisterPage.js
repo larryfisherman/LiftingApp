@@ -6,17 +6,17 @@ import axios from "axios";
 function RegisterPage() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [confirmUserPassword, setConfirmUserPassword] = useState("")
+  const [confirmUserPassword, setConfirmUserPassword] = useState("");
 
   const history = useHistory();
 
   return (
     <Container>
       <Content>
-      <Link to="/">
-            <NavLogo src="./images/lifting-logo.png" />
+        <Link to="/">
+          <NavLogo src="./images/lifting-logo.png" />
         </Link>
-        
+
         <p>Register with your email</p>
         <EmailInput
           placeholder="Email"
@@ -35,21 +35,22 @@ function RegisterPage() {
           value={confirmUserPassword}
           type="password"
         />
-        <Button onClick = { () => {
-          axios.post("https://localhost:5001/api/account/register", {
-            email: userEmail,
-            password: userPassword,
-            confirmPassword: confirmUserPassword
-          }).catch(err => console.log(err))
-          .then(history.push("/loginPage"))
-        }}
+        <Button
+          onClick={() => {
+            axios
+              .post("https://localhost:5001/api/account/register", {
+                email: userEmail,
+                password: userPassword,
+                confirmPassword: confirmUserPassword,
+              })
+              .catch((err) => console.log(err))
+              .then(history.push("/loginPage"));
+          }}
         >
           REGISTER
         </Button>
         <Description>
-            <Link to="/loginPage">
-                Already have an account? Sign in!
-            </Link>
+          <Link to="/loginPage">Already have an account? Sign in!</Link>
         </Description>
       </Content>
     </Container>
@@ -85,7 +86,7 @@ const NavLogo = styled.img`
 const EmailInput = styled.input`
   padding: 15px;
   width: 21.875rem;
-  background-color:#c5c4d5;
+  background-color: #c5c4d5;
   border: none;
   border-radius: 3px;
   margin: 5px;
@@ -101,7 +102,7 @@ const PasswordInput = styled.input`
   border: none;
   border-radius: 3px;
   color: black;
-  margin: 5px;    
+  margin: 5px;
 `;
 
 const Button = styled.button`
@@ -121,6 +122,6 @@ const Description = styled.p`
   margin: 1rem;
   font-size: 0.6rem;
   cursor: pointer;
-  `;
+`;
 
 export default RegisterPage;

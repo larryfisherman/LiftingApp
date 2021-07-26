@@ -23,7 +23,6 @@ function Recipes() {
             ...doc,
           },
         ];
-        console.log(recipes);
         dispatch(
           setRecipes({
             recipes,

@@ -4,6 +4,7 @@ export const workoutsSlice = createSlice({
   name: "workouts",
   initialState: {
     workouts: null,
+    workoutImage: null,
   },
   reducers: {
     setWorkouts: (state, action) => {

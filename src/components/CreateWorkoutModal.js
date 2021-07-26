@@ -5,7 +5,6 @@ import axios from "axios";
 
 function CreateWorkoutModal({ closeModal }) {
   const [workoutName, setWorkoutName] = useState("");
-  const [workoutDescription, setWorkoutDescription] = useState("");
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -34,15 +33,13 @@ function CreateWorkoutModal({ closeModal }) {
               value={workoutName}
               onChange={(e) => setWorkoutName(e.target.value)}
             ></WorkoutName>
-            <WorkoutDescription
-              placeholder="Description"
-              value={workoutDescription}
-              onChange={(e) => setWorkoutDescription(e.target.value)}
-            ></WorkoutDescription>
             <ContinueButton
               onClick={(e) => {
                 axios.post(
-                  `https://localhost:5001/api/account/${userId}/workout`
+                  `https://localhost:5001/api/account/${userId}/workout`,
+                  {
+                    workoutName,
+                  }
                 );
                 closeModal(false);
               }}
@@ -63,8 +60,6 @@ const WorkoutName = styled.input`
   border: 1px solid black;
   border-radius: 2px;
 `;
-
-const WorkoutDescription = styled(WorkoutName)``;
 
 const Title = styled.div`
   display: inline-block;
