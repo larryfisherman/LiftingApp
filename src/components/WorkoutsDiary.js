@@ -1,23 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectWorkouts } from "../store/workoutsSlice";
 import { Link } from "react-router-dom";
-import workoutImage from "../utility/workoutImage";
+import { setWorkouts } from "../store/workoutsSlice";
+import workoutImageDraw from "../utility/workoutImage";
+import axios from "axios";
 
 function WorkoutsDiary() {
-  const workouts = useSelector(selectWorkouts);
-  console.log(workouts);
-  console.log(workoutImage());
+  const showWorkouts = useSelector(selectWorkouts);
+  const dispatch = useDispatch();
+
+  let workouts = [];
+
+  useEffect(() => {
+    axios
+      .get(`https://localhost:5001/api/account/${localStorage.userId}/workout`)
+      .then((response) => {
+        response.data.map((doc) => {
+          workouts = [
+            ...workouts,
+            {
+              id: doc.id,
+              ...doc,
+            },
+          ];
+          dispatch(
+            setWorkouts({
+              workouts,
+            })
+          );
+        });
+      });
+  }, [dispatch]);
 
   return (
     <Container>
       <Content>
-        {workouts &&
-          workouts.map((workout, key) => (
+        {showWorkouts &&
+          showWorkouts.map((workout, key) => (
             <Image key={key}>
-              <Link to={`/details/` + workout.id}>
-                <img src={workoutImage()} alt="" />
+              <Link to={`/exercise/` + workout.id}>
+                <img src={workoutImageDraw()} alt="" />
+                <Text>
+                  <span>{workout.workoutName}</span>
+                </Text>
               </Link>
             </Image>
           ))}
@@ -33,6 +60,7 @@ min-height: 100vh;
 overflow-x: hidden;
 padding: 0 calc(3.5vw + 50px);
 margin: 5rem;
+
 
 &:after {
   position: absolute;
@@ -51,6 +79,17 @@ const Content = styled.div`
   }
 `;
 
+const Text = styled.div`
+  display: flex;
+  justify-content: center;
+
+  span {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px 80px;
+  }
+`;
+
 const Image = styled.div`
   padding-top: 50%;
   cursor: pointer;
@@ -59,6 +98,8 @@ const Image = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   margin-bottom: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+
   img {
     object-fit: cover;
     width: 100%;
@@ -66,15 +107,11 @@ const Image = styled.div`
     position: absolute;
     top: 0;
     z-index: -3;
-    &:hover {
-      background-color: rgb(0, 0, 0, 0.5);
-    }
   }
   &:hover {
     transform: scale(1.01);
     transition: all 0.3s ease-out;
     border: 2px solid rgb(255, 255, 255, 1);
-    background-color: rgb(0, 0, 0, 0.5);
   }
 `;
 

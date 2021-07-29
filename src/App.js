@@ -1,13 +1,15 @@
-import { useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
 import Recipes from "./components/Recipes";
 import RecipeDetails from "./components/RecipeDetails";
+import WorkoutsDiary from "./components/WorkoutsDiary";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Workouts from "./components/Workouts";
+import Exercise from "./components/Exercise";
+import WorkoutDetails from "./components/WorkoutDetails";
 
 function App() {
   return (
@@ -40,10 +42,14 @@ function App() {
           </Link>
           <Workouts />
         </Route>
-        <Route path="/WorkoutsDiary">
+        <Route path="/workoutsDiary">
           <Link to="/">
             <Header />
+            <WorkoutsDiary />
           </Link>
+        </Route>
+        <Route path="/exercise/:id">
+          <WorkoutDetails />
         </Route>
       </Router>
     </div>

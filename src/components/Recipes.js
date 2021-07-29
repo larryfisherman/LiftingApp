@@ -102,6 +102,8 @@ const Image = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   margin-bottom: 25px;
+  background-color: rgba(255, 255, 255, 0.1);
+
   img {
     object-fit: cover;
     width: 100%;
@@ -117,7 +119,6 @@ const Image = styled.div`
     transform: scale(1.01);
     transition: all 0.3s ease-out;
     border: 2px solid rgb(255, 255, 255, 1);
-    background-color: rgb(0, 0, 0, 0.5);
   }
 `;
 

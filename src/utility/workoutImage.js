@@ -1,23 +1,15 @@
 function workoutImage() {
   const images = [
-    {
-      img1: "./images/workout-image1.jpg",
-    },
-    {
-      img2: "./images/workout-image2.jpg",
-    },
-    {
-      img3: "./images/workout-image3.jpg",
-    },
+    "./images/workout-image1.jpg",
+    "./images/workout-image2.jpg",
+    "./images/workout-image3.jpg",
+    "./images/workout-image4.jpg",
+    "./images/workout-image5.jpg",
+    "./images/workout-image6.jpg",
   ];
 
-  let returnImage = null;
-
-  const imageDraw = () => {
-    const imageIndex = Math.floor(Math.random() * images.length);
-    let returnImage = images[imageIndex];
-    return returnImage;
-  };
+  const imageIndex = Math.floor(Math.random() * images.length);
+  let returnImage = images[imageIndex];
 
   return returnImage;
 }

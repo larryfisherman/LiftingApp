@@ -70,6 +70,7 @@ const Nav = styled.div`
   justify-content: space-between;
   z-index: 999;
   border-bottom: 2px solid black;
+  background-color: white;
 `;
 
 const NavLogo = styled.img`

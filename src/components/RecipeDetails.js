@@ -1,61 +1,49 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
-import styled from 'styled-components';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 function RecipeDetails() {
-    const {id} = useParams();
-    const [details, setDetails] = useState(""); 
+  const { id } = useParams();
+  const [details, setDetails] = useState("");
 
-    useEffect(() => {
-        axios.get("https://localhost:5001/api/recipes/")
-        .then(res => res.data.map((doc) => {
-            if(doc.id == id) { 
-                setDetails(doc);
-            }
-        }))
-        console.log(details);
-    }, [id])
+  useEffect(() => {
+    axios.get("https://localhost:5001/api/recipes/").then((res) =>
+      res.data.map((doc) => {
+        if (doc.id == id) {
+          setDetails(doc);
+        }
+      })
+    );
+    console.log(details);
+  }, [id]);
 
-    return (
-        <Container>
-            <Background>
-                <img src={details.recipePhoto} alt=""/>
-            </Background>
-            <Content>
-            <Macro>
-                <Proteins>
-
-                    P: {details?.proteins}
-                </Proteins>
-                <Carbo>
-                    C: {details?.carbo}
-                </Carbo>
-                <Fat>
-                    F: {details?.fat}
-                </Fat>
-                <Calories>
-                    {details?.calories} kcal
-                </Calories>
-            </Macro>
-            <Name>
-                {details.name}
-            </Name>
-            <Description>
-                {details.description}
-            </Description>
-            </Content>
-        </Container>
-    )
+  return (
+    <Container>
+      <Background>
+        <img src={details.recipePhoto} alt="" />
+      </Background>
+      <Content>
+        <Macro>
+          <Proteins>P: {details?.proteins}</Proteins>
+          <Carbo>C: {details?.carbo}</Carbo>
+          <Fat>F: {details?.fat}</Fat>
+          <Calories>{details?.calories} kcal</Calories>
+        </Macro>
+        <Name>{details.name}</Name>
+        <Description>{details.description}</Description>
+      </Content>
+    </Container>
+  );
 }
 
-const Container = styled.div `
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
-    top: 0;
-    background-color: rgb(0,0,0, 0.72)
-    `;
+const Container = styled.div`
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  top: 0;
+  background-color: rgb(0, 0, 0, 0.72);
+`;
 
 const Macro = styled.div`
   display: flex;
@@ -63,9 +51,9 @@ const Macro = styled.div`
   flex-direction: row;
 `;
 
-const Content = styled.div `
-    max-width: 874px;
-    margin: 0px 0px 0px 30px;
+const Content = styled.div`
+  max-width: 874px;
+  margin: 0px 0px 0px 30px;
 `;
 
 const Name = styled.div`
@@ -125,9 +113,9 @@ const Proteins = styled.div`
       width: 2px;
     }
   }
-`; 
+`;
 
-const Fat = styled(Proteins) ``;
+const Fat = styled(Proteins)``;
 const Carbo = styled(Proteins)``;
 const Calories = styled(Proteins)``;
-export default RecipeDetails
+export default RecipeDetails;

@@ -1,40 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import CreateWorkoutModal from "./CreateWorkoutModal";
-import { useDispatch } from "react-redux";
-import { setWorkouts } from "../store/workoutsSlice";
 
 function Workouts() {
   const [showModal, setShowModal] = useState(false);
-  const [userId, setUserId] = useState("");
-  const dispatch = useDispatch();
-
-  let workouts = [];
-
-  useEffect(() => {
-    setUserId(localStorage.userId);
-
-    axios
-      .get(`https://localhost:5001/api/account/${userId}/workout`)
-      .then((response) => {
-        response.data.map((doc) => {
-          workouts = [
-            ...workouts,
-            {
-              id: doc.id,
-              ...doc,
-            },
-          ];
-          dispatch(
-            setWorkouts({
-              workouts,
-            })
-          );
-        });
-      });
-  }, [dispatch]);
 
   return (
     <>
