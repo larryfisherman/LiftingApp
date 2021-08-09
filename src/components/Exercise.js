@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router";
-import workoutImageDraw from "../utility/workoutImage";
 
 function Exercise() {
   const { id } = useParams();
@@ -18,10 +17,7 @@ function Exercise() {
           setDetails(res.data);
         });
       });
-    console.log(details);
-  }, []);
-
-  console.log(details);
+  }, [details]);
 
   return (
     <Container>
@@ -40,23 +36,28 @@ function Exercise() {
   );
 }
 
-const Sets = styled.div``;
+const Sets = styled.div`
+  margin: 10px;
+`;
 
-const Amount = styled.div``;
+const Amount = styled.div`
+  margin: 10px;
+`;
 
-const Background = styled.img`
-  z-index: -1;
+const Title = styled.div`
+  margin: 10px;
 `;
 
 const SingleExercise = styled.li`
-  margin: 20px;
-  background-color: lightgray;
-  padding: 100px 300px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 80px 100px;
+  margin: 10px;
   display: flex;
   justify-content: space-between;
   border-radius: 4px;
+  font-size: 24px;
 `;
-const Title = styled.div``;
+
 const Container = styled.div``;
 const Content = styled.div``;
 
