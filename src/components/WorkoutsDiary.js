@@ -62,6 +62,7 @@ padding: 0 calc(3.5vw + 50px);
 margin: 5rem;
 
 
+
 &:after {
   position: absolute;
   content: "";

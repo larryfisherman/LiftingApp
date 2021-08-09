@@ -8,7 +8,6 @@ import WorkoutsDiary from "./components/WorkoutsDiary";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Workouts from "./components/Workouts";
-import Exercise from "./components/Exercise";
 import WorkoutDetails from "./components/WorkoutDetails";
 
 function App() {

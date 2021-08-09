@@ -5,6 +5,10 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../store/userSlice";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/userSlice";
+import recipesIcon from "../images/recipes-icon.png";
+import calculatorIcon from "../images/calculator-icon.png";
+import workoutsIcon from "../images/workouts-icon.png";
+import navLogo from "../images/lifting-logo.png";
 
 function Header() {
   const user = useSelector(selectUser);
@@ -12,7 +16,7 @@ function Header() {
 
   return (
     <Nav>
-      <NavLogo src="./images/lifting-logo.png" alt="" />
+      <NavLogo src={navLogo} alt="" />
       {!user?.id ? (
         <LoginButton>
           <Link to="/registerPage">SIGN IN</Link>
@@ -22,21 +26,22 @@ function Header() {
           <NavMenu>
             <Link to="/recipes">
               <a href="">
-                <img src="./images/recipes-icon.png" alt="" />
+                <img src={recipesIcon} alt="" />
+
                 <span>RECIPES</span>
               </a>
             </Link>
 
             <Link to="/calculators">
               <a href="">
-                <img src="./images/calculator-icon.png" alt="" />
+                <img src={calculatorIcon} alt="" />
                 <span>CALCULATORS</span>
               </a>
             </Link>
 
             <Link to="/workouts">
               <a href="">
-                <img src="./images/workouts-icon.png" alt="" />
+                <img src={workoutsIcon} alt="" />
                 <span>WORKOUTS</span>
               </a>
             </Link>

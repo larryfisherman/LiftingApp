@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CreateWorkoutModal from "./CreateWorkoutModal";
+import createWorkout from "../images/create-workout.jpg";
+import workoutsDiary from "../images/workout-diary.jpg";
 
 function Workouts() {
   const [showModal, setShowModal] = useState(false);
@@ -11,11 +13,11 @@ function Workouts() {
       <Container>
         <Content>
           <Image onClick={() => setShowModal(true)}>
-            <img src={"./images/create-workout.jpg"} alt="" />
+            <img src={createWorkout} alt="" />
           </Image>
           <Image>
             <Link to={"/WorkoutsDiary"}>
-              <img src={"./images/workout-diary.jpg"} alt="" />
+              <img src={workoutsDiary} alt="" />
             </Link>
           </Image>
         </Content>

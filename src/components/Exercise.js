@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router";
+import workoutImageDraw from "../utility/workoutImage";
 
 function Exercise() {
   const { id } = useParams();
@@ -17,25 +18,45 @@ function Exercise() {
           setDetails(res.data);
         });
       });
+    console.log(details);
   }, []);
+
+  console.log(details);
 
   return (
     <Container>
       <Content>
-        <Title>{details.map((exercise) => exercise.exerciseName)}</Title>
+        {details.map((exercise) => (
+          <SingleExercise>
+            <Title key={exercise.exerciseName}>
+              Title: {exercise.exerciseName}
+            </Title>
+            <Sets key={exercise.sets}>Sets: {exercise.sets}</Sets>
+            <Amount key={exercise.amount}>Amount: {exercise.amount}</Amount>
+          </SingleExercise>
+        ))}
       </Content>
     </Container>
   );
 }
 
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: black;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+const Sets = styled.div``;
+
+const Amount = styled.div``;
+
+const Background = styled.img`
+  z-index: -1;
 `;
+
+const SingleExercise = styled.li`
+  margin: 20px;
+  background-color: lightgray;
+  padding: 100px 300px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 4px;
+`;
+const Title = styled.div``;
 const Container = styled.div``;
 const Content = styled.div``;
 
