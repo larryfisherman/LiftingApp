@@ -11,6 +11,8 @@ function CreateWorkoutModal({ closeModal }) {
     setUserId(localStorage.userId);
   }, []);
 
+  console.log("drugi nowy commit");
+
   return (
     <Background>
       <Container>
