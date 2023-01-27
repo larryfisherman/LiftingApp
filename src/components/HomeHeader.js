@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 function HomeHeader() {
-  const test1 = "test1";
-  const test2 = "test2";
+  console.log("commit3");
   return (
     <Container>
       <Content>
