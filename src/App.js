@@ -11,6 +11,7 @@ import Workouts from "./components/Workouts";
 import WorkoutDetails from "./components/WorkoutDetails";
 
 function App() {
+  console.log("nowy commit");
   return (
     <div className="App">
       <Router>
