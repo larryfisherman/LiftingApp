@@ -11,6 +11,8 @@ function CreateWorkoutModal({ closeModal }) {
     setUserId(localStorage.userId);
   }, []);
 
+  console.log("test test test");
+
   return (
     <Background>
       <Container>
