@@ -8,6 +8,8 @@ import { selectUser } from "../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
+  console.log("commit1");
+
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
