@@ -8,6 +8,8 @@ import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 
 function LoginPage() {
+  console.log("commit2");
+
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const dispatch = useDispatch();
